@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="NotificationService"
+			 targetNamespace="http://www.wstutorial.com/ws/NotificationService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/NotificationService"
+			 xmlns:notification="http://www.wstutorial.com/ws/NotificationService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/NotificationService" schemaLocation="../schemas/notification.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="notificationFault">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getNotificationsRequestMsg">
+		<part name="params" element="notification:getNotificationsRequest" />
+	</message>
+	<message name="getNotificationsResponseMsg">
+		<part name="params" element="notification:getNotificationsResponse" />
+	</message>
+
+	<message name="deleteNotificationRequestMsg">
+		<part name="params" element="notification:deleteNotificationRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateNotificationRequestMsg">
+		<part name="params" element="notification:updateNotificationRequest" />
+	</message>
+
+	<message name="createNotificationRequestMsg">
+		<part name="params" element="notification:createNotificationRequest"/>
+	</message>
+
+	<message name="getNotificationRequestMsg">
+		<part name="params" element="notification:getNotificationRequest"/>
+	</message>
+	<message name="getNotificationResponseMsg">
+		<part name="params" element="notification:getNotificationResponse"/>
+	</message>
+
+	<portType name="NotificationServicePortType">
+		<operation name="deleteNotification">
+			<input message="tns:deleteNotificationRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:notificationFault" />
+		</operation>
+		<operation name="createNotification">
+			<input message="tns:createNotificationRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:notificationFault"/>
+		</operation>
+		<operation name="updateNotification">
+			<input message="tns:updateNotificationRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:notificationFault" />
+		</operation>
+		<operation name="getNotifications">
+			<input message="tns:getNotificationsRequestMsg" />
+			<output message="tns:getNotificationsResponseMsg" />
+			<fault name="fault" message="tns:notificationFault" />
+		</operation>
+		<operation name="getNotification">
+			<input message="tns:getNotificationRequestMsg"/>
+			<output message="notification:getNotificationResponseMsg"/>
+			<fault name="fault" message="tns:notificationFault"/>
+		</operation>
+	</portType>
+
+	<binding name="notificationServiceSOAPBinding" type="tns:NotificationServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteNotification">
+			<soap:operation soapAction="deleteNotification" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createNotification">
+			<soap:operation soapAction="createNotification" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateNotification">
+			<soap:operation soapAction="updateNotification" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getNotifications">
+			<soap:operation soapAction="getNotifications" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getNotification">
+			<soap:operation soapAction="getNotification" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="NotificationService">
+		<port name="NotificationServicePort" binding="tns:notificationServiceSOAPBinding">
+			<soap:address location="http://localhost:8085/ws/notificationService" />
+		</port>
+	</service>
+</definitions>

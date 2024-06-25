@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/NotificationService"
+           xmlns:tns="http://www.wstutorial.com/ws/NotificationService">
+
+    <xs:complexType name="Notification">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="content" type="xs:string" />
+            <xs:element name="from" type="xs:long" />
+            <xs:element name="to" type="xs:long" />
+            <xs:element name="status" type="tns:NotificationStatus" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="NotificationStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SEEN"/>
+            <xs:enumeration value="UNSEEN"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="updateNotificationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="notificationType" type="tns:Notification" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createNotificationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="notificationType" type="tns:Notification" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteNotificationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getNotificationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getNotificationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getNotificationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Notification" minOccurs="0" maxOccurs="unbounded" name="notifications" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getNotificationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Notification" name="notification"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="Notifications">
+        <xs:sequence>
+            <xs:element type="tns:Notification" minOccurs="0" maxOccurs="unbounded" name="notifications" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
