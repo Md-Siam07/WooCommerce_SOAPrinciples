@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/CustomerService"
+           xmlns:tns="http://www.wstutorial.com/ws/CustomerService">
+
+    <xs:complexType name="Customer">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="email" type="xs:string" />
+            <xs:element name="phoneNumber" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="updateCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customerType" type="tns:Customer" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Define the element 'updateCustomerResponse' -->
+    <xs:element name="updateCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Define other elements and types as needed -->
+    <xs:complexType name="statusCode">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="createCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customerType" type="tns:Customer" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="tns:statusCode" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomersRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Customer" minOccurs="0" maxOccurs="unbounded" name="customers" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Customer" name="customer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="Customers">
+        <xs:sequence>
+            <xs:element type="tns:Customer" minOccurs="0" maxOccurs="unbounded" name="customers" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="customerFault" type="xs:string" />
+</xs:schema>

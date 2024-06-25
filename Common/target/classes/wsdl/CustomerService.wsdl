@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="CustomerService"
+			 targetNamespace="http://www.wstutorial.com/ws/CustomerService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/CustomerService"
+			 xmlns:customer="http://www.wstutorial.com/ws/CustomerService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CustomerService" schemaLocation="../schemas/customer.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="customerFault">
+		<part name="params" element="customer:customerFault" />
+	</message>
+
+	<message name="getCustomersRequestMsg">
+		<part name="params" element="customer:getCustomersRequest" />
+	</message>
+	<message name="getCustomersResponseMsg">
+		<part name="params" element="customer:getCustomersResponse" />
+	</message>
+
+	<message name="deleteCustomerRequestMsg">
+		<part name="params" element="customer:deleteCustomerRequest" />
+	</message>
+	<message name="deleteCustomerResponseMsg">
+		<part name="params" element="customer:deleteCustomerResponse" />
+	</message>
+
+	<message name="updateCustomerRequestMsg">
+		<part name="params" element="customer:updateCustomerRequest" />
+	</message>
+	<message name="updateCustomerResponseMsg">
+		<part name="params" element="customer:updateCustomerResponse" />
+	</message>
+	<message name="createCustomerRequestMsg">
+		<part name="params" element="customer:createCustomerRequest"/>
+	</message>
+	<message name="createCustomerResponseMsg">
+		<part name="params" element="customer:createCustomerResponse"/>
+	</message>
+	<message name="getCustomerRequestMsg">
+		<part name="params" element="customer:getCustomerRequest"/>
+	</message>
+	<message name="getCustomerResponseMsg">
+		<part name="params" element="customer:getCustomerResponse"/>
+	</message>
+
+	<portType name="CustomerServicePortType">
+		<operation name="deleteCustomer">
+			<input message="tns:deleteCustomerRequestMsg" />
+			<output message="tns:deleteCustomerResponseMsg" />
+			<fault name="fault" message="tns:customerFault" />
+		</operation>
+		<operation name="createCustomer">
+			<input message="tns:createCustomerRequestMsg"/>
+			<output message="tns:createCustomerResponseMsg"/>
+			<fault name="fault" message="tns:customerFault"/>
+		</operation>
+		<operation name="updateCustomer">
+			<input message="tns:updateCustomerRequestMsg" />
+			<output message="tns:updateCustomerResponseMsg" />
+			<fault name="fault" message="tns:customerFault" />
+		</operation>
+		<operation name="getCustomers">
+			<input message="tns:getCustomersRequestMsg" />
+			<output message="tns:getCustomersResponseMsg" />
+			<fault name="fault" message="tns:customerFault" />
+		</operation>
+		<operation name="getCustomer">
+			<input message="tns:getCustomerRequestMsg"/>
+			<output message="customer:getCustomerResponseMsg"/>
+			<fault name="fault" message="tns:customerFault"/>
+		</operation>
+	</portType>
+
+	<binding name="customerServiceSOAPBinding" type="tns:CustomerServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteCustomer">
+			<soap:operation soapAction="deleteCustomer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createCustomer">
+			<soap:operation soapAction="createCustomer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateCustomer">
+			<soap:operation soapAction="updateCustomer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getCustomers">
+			<soap:operation soapAction="getCustomers" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getCustomer">
+			<soap:operation soapAction="getCustomer" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="CustomerService">
+		<port name="CustomerServicePort" binding="tns:customerServiceSOAPBinding">
+			<soap:address location="http://localhost:8081/wsdlfirst/customerService" />
+		</port>
+	</service>
+</definitions>
