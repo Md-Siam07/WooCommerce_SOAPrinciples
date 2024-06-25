@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/ProductService"
+           xmlns:tns="http://www.wstutorial.com/ws/ProductService">
+
+    <xs:complexType name="Product">
+        <xs:all>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="label" type="xs:string" />
+            <xs:element name="price" type="xs:long" />
+            <xs:element name="stock" type="xs:long" />
+            <xs:element name="sellerId" type="xs:long" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="updateProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productType" type="tns:Product" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productType" type="tns:Product" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getProductRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getProductsRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getProductsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Product" minOccurs="0" maxOccurs="unbounded" name="products" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getProductResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Product" name="product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="updateProductStockRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="id"/>
+                <xs:element type="xs:long" name="quantity"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getProductsBySellerIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="sellerId"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Products">
+        <xs:sequence>
+            <xs:element type="tns:Product" minOccurs="0" maxOccurs="unbounded" name="products" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

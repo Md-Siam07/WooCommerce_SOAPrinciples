@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ProductService"
+			 targetNamespace="http://www.wstutorial.com/ws/ProductService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/ProductService"
+			 xmlns:product="http://www.wstutorial.com/ws/ProductService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/ProductService" schemaLocation="../schemas/product.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="productFault">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getProductsRequestMsg">
+		<part name="params" element="product:getProductsRequest" />
+	</message>
+	<message name="getProductsResponseMsg">
+		<part name="params" element="product:getProductsResponse" />
+	</message>
+
+	<message name="deleteProductRequestMsg">
+		<part name="params" element="product:deleteProductRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateProductRequestMsg">
+		<part name="params" element="product:updateProductRequest" />
+	</message>
+
+	<message name="updateProductStockRequestMsg">
+		<part name="params" element="product:updateProductStockRequest" />
+	</message>
+
+	<message name="getProductsBySellerIdRequestMsg">
+		<part name="params" element="product:getProductsBySellerIdRequest" />
+	</message>
+
+	<message name="createProductRequestMsg">
+		<part name="params" element="product:createProductRequest"/>
+	</message>
+
+	<message name="getProductRequestMsg">
+		<part name="params" element="product:getProductRequest"/>
+	</message>
+	<message name="getProductResponseMsg">
+		<part name="params" element="product:getProductResponse"/>
+	</message>
+
+	<portType name="ProductServicePortType">
+		<operation name="deleteProduct">
+			<input message="tns:deleteProductRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:productFault" />
+		</operation>
+		<operation name="createProduct">
+			<input message="tns:createProductRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:productFault"/>
+		</operation>
+		<operation name="updateProduct">
+			<input message="tns:updateProductRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:productFault" />
+		</operation>
+		<operation name="getProducts">
+			<input message="tns:getProductsRequestMsg" />
+			<output message="tns:getProductsResponseMsg" />
+			<fault name="fault" message="tns:productFault" />
+		</operation>
+		<operation name="getProduct">
+			<input message="tns:getProductRequestMsg"/>
+			<output message="product:getProductResponseMsg"/>
+			<fault name="fault" message="tns:productFault"/>
+		</operation>
+		<operation name="getProductsBySellerId">
+			<input message="tns:getProductsBySellerIdRequestMsg"/>
+			<output message="product:getProductsResponseMsg"/>
+			<fault name="fault" message="tns:productFault"/>
+		</operation>
+		<operation name="updateProductStockRequest">
+			<input message="tns:updateProductStockRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:productFault"/>
+		</operation>
+	</portType>
+
+	<binding name="productServiceSOAPBinding" type="tns:ProductServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteProduct">
+			<soap:operation soapAction="deleteProduct" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createProduct">
+			<soap:operation soapAction="createProduct" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateProduct">
+			<soap:operation soapAction="updateProduct" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getProducts">
+			<soap:operation soapAction="getProducts" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getProduct">
+			<soap:operation soapAction="getProduct" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getProductsBySellerId">
+			<soap:operation soapAction="getProductsBySellerId" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateProductStockRequest">
+			<soap:operation soapAction="updateProductStockRequest" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="ProductService">
+		<port name="ProductServicePort" binding="tns:productServiceSOAPBinding">
+			<soap:address location="http://localhost:8084/ws/productService" />
+		</port>
+	</service>
+</definitions>
