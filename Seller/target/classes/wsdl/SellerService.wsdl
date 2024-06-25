@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="SellerService"
+			 targetNamespace="http://www.wstutorial.com/ws/SellerService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/SellerService"
+			 xmlns:seller="http://www.wstutorial.com/ws/SellerService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/SellerService" schemaLocation="../schemas/seller.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="getSellersRequestMsg">
+		<part name="params" element="seller:getSellersRequest" />
+	</message>
+	<message name="getSellersResponseMsg">
+		<part name="params" element="seller:getSellersResponse" />
+	</message>
+
+	<message name="deleteSellerRequestMsg">
+		<part name="params" element="seller:deleteSellerRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateSellerRequestMsg">
+		<part name="params" element="seller:updateSellerRequest" />
+	</message>
+
+	<message name="createSellerRequestMsg">
+		<part name="params" element="seller:createSellerRequest"/>
+	</message>
+
+	<message name="sellerFault">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getSellerRequestMsg">
+		<part name="params" element="seller:getSellerRequest"/>
+	</message>
+	<message name="getSellerResponseMsg">
+		<part name="params" element="seller:getSellerResponse"/>
+	</message>
+
+	<portType name="SellerServicePortType">
+		<operation name="deleteSeller">
+			<input message="tns:deleteSellerRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:sellerFault" />
+		</operation>
+		<operation name="createSeller">
+			<input message="tns:createSellerRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:sellerFault"/>
+		</operation>
+		<operation name="updateSeller">
+			<input message="tns:updateSellerRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:sellerFault" />
+		</operation>
+		<operation name="getSellers">
+			<input message="tns:getSellersRequestMsg" />
+			<output message="tns:getSellersResponseMsg" />
+			<fault name="fault" message="tns:sellerFault" />
+		</operation>
+		<operation name="getSeller">
+			<input message="tns:getSellerRequestMsg"/>
+			<output message="seller:getSellerResponseMsg"/>
+			<fault name="fault" message="tns:sellerFault"/>
+		</operation>
+	</portType>
+
+	<binding name="sellerServiceSOAPBinding" type="tns:SellerServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteSeller">
+			<soap:operation soapAction="deleteSeller" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createSeller">
+			<soap:operation soapAction="createSeller" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateSeller">
+			<soap:operation soapAction="updateSeller" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getSellers">
+			<soap:operation soapAction="getSellers" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getSeller">
+			<soap:operation soapAction="getSeller" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="SellerService">
+		<port name="SellerServicePort" binding="tns:sellerServiceSOAPBinding">
+			<soap:address location="http://localhost:8083/ws/sellerService" />
+		</port>
+	</service>
+</definitions>
