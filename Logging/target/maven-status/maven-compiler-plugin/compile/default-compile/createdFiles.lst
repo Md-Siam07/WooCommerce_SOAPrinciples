@@ -1,0 +1,10 @@
+com/wstutorial/ws/logservice/ObjectFactory.class
+com/wstutorial/ws/commonservice/ObjectFactory.class
+com/wstutorial/ws/commonservice/package-info.class
+com/wstutorial/ws/SellerServiceConfig.class
+com/wstutorial/ws/logservice/package-info.class
+com/wstutorial/ws/commonservice/AcknowledgementCode.class
+com/wstutorial/ws/SellerService.class
+com/wstutorial/ws/commonservice/AcknowledgementCodeResponse.class
+com/wstutorial/ws/commonservice/StatusCode.class
+com/wstutorial/ws/logservice/LogsRequest.class
