@@ -3,13 +3,19 @@
            targetNamespace="http://www.wstutorial.com/ws/ProductService"
            xmlns:tns="http://www.wstutorial.com/ws/ProductService">
 
-    <xs:complexType name="Product">
+    <xs:complexType name="ProductHeader">
         <xs:all>
             <xs:element name="id" type="xs:long" />
             <xs:element name="label" type="xs:string" />
             <xs:element name="price" type="xs:long" />
-            <xs:element name="stock" type="xs:long" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="Product">
+        <xs:all>
+            <xs:element name="header" type="tns:ProductHeader" />
             <xs:element name="sellerId" type="xs:long" />
+            <xs:element name="stock" type="xs:long" />
         </xs:all>
     </xs:complexType>
 

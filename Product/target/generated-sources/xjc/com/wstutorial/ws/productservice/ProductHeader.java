@@ -10,22 +10,24 @@ package com.wstutorial.ws.productservice;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for ProductHeader complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType&gt;
+ * &lt;complexType name="ProductHeader"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
+ *       &lt;all&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
- *       &lt;/sequence&gt;
+ *         &lt;element name="label" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
+ *       &lt;/all&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -34,13 +36,15 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "id"
+@XmlType(name = "ProductHeader", propOrder = {
+
 })
-@XmlRootElement(name = "deleteProductRequest")
-public class DeleteProductRequest {
+public class ProductHeader {
 
     protected long id;
+    @XmlElement(required = true)
+    protected String label;
+    protected long price;
 
     /**
      * Gets the value of the id property.
@@ -56,6 +60,46 @@ public class DeleteProductRequest {
      */
     public void setId(long value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the label property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLabel() {
+        return label;
+    }
+
+    /**
+     * Sets the value of the label property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLabel(String value) {
+        this.label = value;
+    }
+
+    /**
+     * Gets the value of the price property.
+     * 
+     */
+    public long getPrice() {
+        return price;
+    }
+
+    /**
+     * Sets the value of the price property.
+     * 
+     */
+    public void setPrice(long value) {
+        this.price = value;
     }
 
 }

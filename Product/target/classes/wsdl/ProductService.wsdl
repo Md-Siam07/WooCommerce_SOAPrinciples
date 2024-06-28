@@ -29,9 +29,9 @@
 		<part name="params" element="product:getProductsResponse" />
 	</message>
 
-	<message name="deleteProductRequestMsg">
-		<part name="params" element="product:deleteProductRequest" />
-	</message>
+<!--	<message name="deleteProductRequestMsg">-->
+<!--		<part name="params" element="product:deleteProductRequest" />-->
+<!--	</message>-->
 	<message name="sendAcknowledgementMsg">
 		<part name="params" element="common:AcknowledgementCodeResponse" />
 	</message>
@@ -60,11 +60,11 @@
 	</message>
 
 	<portType name="ProductServicePortType">
-		<operation name="deleteProduct">
-			<input message="tns:deleteProductRequestMsg" />
-			<output message="tns:sendAcknowledgementMsg" />
-			<fault name="fault" message="tns:productFault" />
-		</operation>
+<!--		<operation name="deleteProduct">-->
+<!--			<input message="tns:deleteProductRequestMsg" />-->
+<!--			<output message="tns:sendAcknowledgementMsg" />-->
+<!--			<fault name="fault" message="tns:productFault" />-->
+<!--		</operation>-->
 		<operation name="createProduct">
 			<input message="tns:createProductRequestMsg"/>
 			<output message="tns:sendAcknowledgementMsg"/>

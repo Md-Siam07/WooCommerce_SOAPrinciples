@@ -37,24 +37,35 @@ public class ProductServiceEndpoint {
 
 		AcknowledgementCodeResponse response = new AcknowledgementCodeResponse();
 
-		AcknowledgementCode updated = productRepository.updateProductById(request.getProductType().getId(), request.getProductType());
+		AcknowledgementCode updated = productRepository.updateProductById(request.getProductType().getHeader().getId(), request.getProductType());
 		response.setAcknowledgementCode(updated);
 
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProductRequest" )
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductRequest" )
 	@ResponsePayload
-	public AcknowledgementCodeResponse deleteProduct(@RequestPayload DeleteProductRequest request)throws Exception  {
-		System.out.println("-->deleteProduct<--");
-		AcknowledgementCodeResponse response = new AcknowledgementCodeResponse();
+	public GetProductResponse getProduct(@RequestPayload GetProductRequest request)throws Exception  {
+		ObjectFactory factory = new ObjectFactory();
+		GetProductResponse response = factory.createGetProductResponse();
 
-		AcknowledgementCode ack = productRepository.deleteProductById(request.getId());
-
-		response.setAcknowledgementCode(ack);
-
+		Product product = productRepository.getProductById(request.getId());
+		response.setProduct(product);
 		return response;
 	}
+
+//	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProductRequest" )
+//	@ResponsePayload
+//	public AcknowledgementCodeResponse deleteProduct(@RequestPayload DeleteProductRequest request)throws Exception  {
+//		System.out.println("-->deleteProduct<--");
+//		AcknowledgementCodeResponse response = new AcknowledgementCodeResponse();
+//
+//		AcknowledgementCode ack = productRepository.deleteProductById(request.getId());
+//
+//		response.setAcknowledgementCode(ack);
+//
+//		return response;
+//	}
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductsRequest" )
 	@ResponsePayload
@@ -68,16 +79,6 @@ public class ProductServiceEndpoint {
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductRequest" )
-	@ResponsePayload
-	public GetProductResponse getProduct(@RequestPayload GetProductRequest request)throws Exception  {
-		ObjectFactory factory = new ObjectFactory();
-		GetProductResponse response = factory.createGetProductResponse();
-
-        Product product = productRepository.getProductById(request.getId());
-		response.setProduct(product);
-		return response;
-	}
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductsBySellerIdRequest" )
 	@ResponsePayload
@@ -93,7 +94,7 @@ public class ProductServiceEndpoint {
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateProductStockRequest" )
 	@ResponsePayload
 	public AcknowledgementCodeResponse updateProductStockRequest(@RequestPayload UpdateProductStockRequest request)throws Exception  {
-		System.out.println("-->deleteProduct<--");
+
 		AcknowledgementCodeResponse response = new AcknowledgementCodeResponse();
 
 		AcknowledgementCode ack = productRepository.updateProductStock(request.getId(), request.getQuantity());

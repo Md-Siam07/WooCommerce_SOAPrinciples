@@ -12,30 +12,34 @@ public class ProductRepository {
 
     public ProductRepository() {
         Product product1 = new Product();
-        product1.setId(1l);
-        product1.setLabel("Rangpur er hari vanga aam");
-        product1.setPrice(100l);
+        product1.setHeader(new ProductHeader());
+        product1.getHeader().setId(1l);
+        product1.getHeader().setLabel("Rangpur er hari vanga aam");
+        product1.getHeader().setPrice(100l);
         product1.setStock(1000l);
         product1.setSellerId(1);
 
         Product product2 = new Product();
-        product2.setId(2l);
-        product2.setLabel("Rajshahi er lengra aam");
-        product2.setPrice(80l);
+        product2.setHeader(new ProductHeader());
+        product2.getHeader().setId(2l);
+        product2.getHeader().setLabel("Rajshahi er lengra aam");
+        product2.getHeader().setPrice(80l);
         product2.setStock(100l);
         product2.setSellerId(1);
 
         Product product3 = new Product();
-        product3.setId(3l);
-        product3.setLabel("Macbook air 2020");
-        product3.setPrice(99500l);
+        product3.setHeader(new ProductHeader());
+        product3.getHeader().setId(3l);
+        product3.getHeader().setLabel("Macbook air 2020");
+        product3.getHeader().setPrice(99500l);
         product3.setStock(75l);
         product3.setSellerId(2);
 
         Product product4 = new Product();
-        product4.setId(4l);
-        product4.setLabel("macbook pro m2");
-        product4.setPrice(132000l);
+        product4.setHeader(new ProductHeader());
+        product4.getHeader().setId(4l);
+        product4.getHeader().setLabel("macbook pro m2");
+        product4.getHeader().setPrice(132000l);
         product4.setStock(100l);
         product4.setSellerId(2);
 
@@ -50,26 +54,27 @@ public class ProductRepository {
     }
 
     public Product getProductById(Long id) {
+        System.out.println("get called");
         for(Product c: products) {
-            if(c.getId() == id) {
+            if(c.getHeader().getId() == id) {
                 return c;
             }
         }
-        System.out.println("can not delete: product not found with id: " + id);
+        System.out.println("can not get: product not found with id: " + id);
         return null;
     }
 
-    public AcknowledgementCode deleteProductById(Long id) {
-
-        for(Product c: products) {
-            if(c.getId() == id) {
-                products.remove(c);
-                return AcknowledgementCode.DELETED;
-            }
-        }
-        System.out.println("can not delete: product not found with id: " + id);
-        return AcknowledgementCode.FAILED;
-    }
+//    public AcknowledgementCode deleteProductById(Long id) {
+//        System.out.println("delete called");
+//        for(Product c: products) {
+//            if(c.getHeader().getId() == id) {
+//                products.remove(c);
+//                return AcknowledgementCode.DELETED;
+//            }
+//        }
+//        System.out.println("can not delete: product not found with id: " + id);
+//        return AcknowledgementCode.FAILED;
+//    }
 
     public AcknowledgementCode updateProductById(Long id, Product product) {
         if (id == null || product == null) {
@@ -78,7 +83,7 @@ public class ProductRepository {
         }
 
         for (int i = 0; i < products.size(); i++) {
-            Long productId = products.get(i).getId();
+            Long productId = products.get(i).getHeader().getId();
             if (productId.equals(id)) {
                 products.set(i, product);
                 return AcknowledgementCode.UPDATED;
@@ -90,7 +95,7 @@ public class ProductRepository {
 
 
     public void createNewProduct(Product product) {
-        product.setId(products.size()+1);
+        product.getHeader().setId(products.size()+1);
         products.add(product);
     }
 
@@ -105,9 +110,10 @@ public class ProductRepository {
     }
 
     public AcknowledgementCode updateProductStock(Long productId, Long quantity) {
+//        System.out.println("called" + productId + " " + quantity);
         Product product = new Product();
         for(Product p: products) {
-            if(p.getSellerId() == productId) {
+            if(p.getHeader().getId() == productId) {
                 product = p;
             }
         }
