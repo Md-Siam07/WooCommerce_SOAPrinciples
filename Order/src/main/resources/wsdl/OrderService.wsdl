@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="OrderService"
+			 targetNamespace="http://www.wstutorial.com/ws/OrderService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:tns="http://www.wstutorial.com/ws/OrderService"
+			 xmlns:order="http://www.wstutorial.com/ws/OrderService"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/OrderService" schemaLocation="../schemas/order.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="orderFault">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="getOrdersRequestMsg">
+		<part name="params" element="order:getOrdersRequest" />
+	</message>
+	<message name="getOrdersResponseMsg">
+		<part name="params" element="order:getOrdersResponse" />
+	</message>
+
+	<message name="deleteOrderRequestMsg">
+		<part name="params" element="order:deleteOrderRequest" />
+	</message>
+	<message name="sendAcknowledgementMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateOrderRequestMsg">
+		<part name="params" element="order:updateOrderRequest" />
+	</message>
+
+	<message name="getOrdersBySellerIdRequestMsg">
+		<part name="params" element="order:getOrdersBySellerIdRequest" />
+	</message>
+
+	<message name="getPendingOrdersBySellerIdRequestMsg">
+		<part name="params" element="order:getOrdersBySellerIdRequest" />
+	</message>
+
+	<message name="updateOrderStatusMsg">
+		<part name="params" element="order:updateOrderStatusRequest"/>
+	</message>
+
+	<message name="createOrderRequestMsg">
+		<part name="params" element="order:createOrderRequest"/>
+	</message>
+
+	<message name="getOrderRequestMsg">
+		<part name="params" element="order:getOrderRequest"/>
+	</message>
+	<message name="getOrderResponseMsg">
+		<part name="params" element="order:getOrderResponse"/>
+	</message>
+
+	<portType name="OrderServicePortType">
+		<operation name="deleteOrder">
+			<input message="tns:deleteOrderRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:orderFault" />
+		</operation>
+		<operation name="createOrder">
+			<input message="tns:createOrderRequestMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:orderFault"/>
+		</operation>
+		<operation name="updateOrder">
+			<input message="tns:updateOrderRequestMsg" />
+			<output message="tns:sendAcknowledgementMsg" />
+			<fault name="fault" message="tns:orderFault" />
+		</operation>
+		<operation name="getOrders">
+			<input message="tns:getOrdersRequestMsg" />
+			<output message="tns:getOrdersResponseMsg" />
+			<fault name="fault" message="tns:orderFault" />
+		</operation>
+		<operation name="getOrder">
+			<input message="tns:getOrderRequestMsg"/>
+			<output message="order:getOrderResponseMsg"/>
+			<fault name="fault" message="tns:orderFault"/>
+		</operation>
+		<operation name="getOrdersBySellerId">
+			<input message="tns:getOrdersBySellerIdRequestMsg"/>
+			<output message="order:getOrdersResponseMsg"/>
+			<fault name="fault" message="tns:orderFault"/>
+		</operation>
+		<operation name="getPendingOrdersBySellerIdRequest">
+			<input message="tns:getPendingOrdersBySellerIdRequestMsg"/>
+			<output message="order:getOrdersResponseMsg"/>
+			<fault name="fault" message="tns:orderFault"/>
+		</operation>
+		<operation name="updateOrderStatus">
+			<input message="tns:updateOrderStatusMsg"/>
+			<output message="tns:sendAcknowledgementMsg"/>
+			<fault name="fault" message="tns:orderFault" />
+		</operation>
+	</portType>
+
+	<binding name="orderServiceSOAPBinding" type="tns:OrderServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="deleteOrder">
+			<soap:operation soapAction="deleteOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="createOrder">
+			<soap:operation soapAction="createOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateOrder">
+			<soap:operation soapAction="updateOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getOrders">
+			<soap:operation soapAction="getOrders" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getOrder">
+			<soap:operation soapAction="getOrder" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getOrdersBySellerId">
+			<soap:operation soapAction="getOrdersBySellerId" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getPendingOrdersBySellerIdRequest">
+			<soap:operation soapAction="getPendingOrdersBySellerIdRequest" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="updateOrderStatus">
+			<soap:operation soapAction="updateOrderStatus" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="OrderService">
+		<port name="OrderServicePort" binding="tns:orderServiceSOAPBinding">
+			<soap:address location="http://localhost:8087/ws/orderService" />
+		</port>
+	</service>
+</definitions>

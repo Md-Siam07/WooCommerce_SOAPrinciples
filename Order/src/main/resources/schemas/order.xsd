@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/OrderService"
+           xmlns:tns="http://www.wstutorial.com/ws/OrderService"
+           xmlns:product="http://www.wstutorial.com/ws/ProductService">
+
+    <xs:import namespace="http://www.wstutorial.com/ws/ProductService" schemaLocation="../../../../../Product/src/main/resources/schemas/product.xsd"/>
+
+    <xs:complexType name="Order">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="products" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="product" type="tns:ProductItem" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sellerId" type="xs:long"/>
+            <xs:element name="customerId" type="xs:long"/>
+            <xs:element name="status" type="tns:OrderStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="OrderStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="CONFIRMED"/>
+            <xs:enumeration value="DECLINED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ProductItem">
+        <xs:sequence>
+            <xs:element name="productHeader" type="product:ProductHeader"/>
+            <xs:element name="quantity" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="updateOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderType" type="tns:Order" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderType" type="tns:Order" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="deleteOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" minOccurs="0" maxOccurs="unbounded" name="orders" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:Order" name="order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateOrderStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="id"/>
+                <xs:element type="tns:OrderStatus" name="status"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getOrdersBySellerIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:long" name="sellerId"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Orders">
+        <xs:sequence>
+            <xs:element type="tns:Order" minOccurs="0" maxOccurs="unbounded" name="orders" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
