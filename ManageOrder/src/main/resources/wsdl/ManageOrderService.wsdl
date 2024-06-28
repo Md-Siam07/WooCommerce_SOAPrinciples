@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ManageOrderService"
+			 targetNamespace="http://www.wstutorial.com/ws/ManageOrderService"
+			 xmlns:tns="http://www.wstutorial.com/ws/ManageOrderService"
+			 xmlns:manageOrder="http://www.wstutorial.com/ws/ManageOrderService"
+			 xmlns="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			 xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			 xmlns:common="http://www.wstutorial.com/ws/CommonService"
+			 xmlns:order="http://www.wstutorial.com/ws/OrderService"
+			 xmlns:product="http://www.wstutorial.com/ws/ProductService"
+			 xmlns:notification="http://www.wstutorial.com/ws/NotificationService"
+			 xmlns:log="http://www.wstutorial.com/ws/LogService">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/ManageOrderService" schemaLocation="../schemas/manageOrder.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/CommonService" schemaLocation="../../../../../Common/src/main/resources/schemas/common.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/OrderService" schemaLocation="../../../../../Order/src/main/resources/schemas/order.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/ProductService" schemaLocation="../../../../../Product/src/main/resources/schemas/product.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/LogService" schemaLocation="../../../../../Logging/src/main/resources/schemas/logging.xsd"/>
+		</xs:schema>
+		<xs:schema>
+			<xs:import namespace="http://www.wstutorial.com/ws/NotificationService" schemaLocation="../../../../../Notification/src/main/resources/schemas/notification.xsd"/>
+		</xs:schema>
+	</types>
+
+	<message name="manageOrderFault">
+		<part name="params" element="common:fault" />
+	</message>
+
+	<message name="createManageOrdersRequestMsg">
+		<part name="params" element="manageOrder:CreateManageOrder" />
+	</message>
+	<message name="acknowledgementResponseMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="updateOrderStatusRequest">
+		<part name="params" element="order:updateOrderStatusRequest" />
+	</message>
+	<message name="manageUpdateOrderStatusResponseMsg">
+		<part name="params" element="common:AcknowledgementCodeResponse" />
+	</message>
+
+	<message name="getOrdersBySellerIdRequest">
+		<part name="params" element="order:getOrdersBySellerIdRequest" />
+	</message>
+	<message name="manageGetOrdersBySellerIdResponseMsg">
+		<part name="params" element="order:getOrderResponse" />
+	</message>
+
+<!--	<message name="createNotificationRequestMsg">-->
+<!--		<part name="params" element="notification:createNotificationRequest" />-->
+<!--	</message>-->
+
+<!--	<message name="getNotificationsRequestMsg">-->
+<!--		<part name="params" element="notification:getNotificationsRequest" />-->
+<!--	</message>-->
+<!--	<message name="getNotificationsResponseMsg">-->
+<!--		<part name="params" element="notification:getNotificationsResponse"/>-->
+<!--	</message>-->
+
+<!--	<message name="updateProductStockRequestMsg">-->
+<!--		<part name="params" element="product:updateProductStockRequest"/>-->
+<!--	</message>-->
+
+<!--	<message name="createLogRequestMsg">-->
+<!--		<part name="params" element="log:logsRequest"/>-->
+<!--	</message>-->
+
+	<portType name="ManageOrderServicePortType">
+
+		<operation name="createManageOrders">
+			<input message="tns:createManageOrdersRequestMsg" />
+			<output message="tns:acknowledgementResponseMsg" />
+			<fault name="fault" message="tns:manageOrderFault" />
+		</operation>
+		<operation name="manageUpdateOrderStatus">
+			<input message="tns:updateOrderStatusRequest" />
+			<output message="tns:manageUpdateOrderStatusResponseMsg" />
+			<fault name="fault" message="tns:manageOrderFault" />
+		</operation>
+		<operation name="manageGetOrdersBySellerId">
+			<input message="tns:getOrdersBySellerIdRequest" />
+			<output message="tns:manageGetOrdersBySellerIdResponseMsg" />
+			<fault name="fault" message="tns:manageOrderFault" />
+		</operation>
+<!--		<operation name="manageCreateNotification">-->
+<!--			<input message="tns:createNotificationRequestMsg"/>-->
+<!--			<output message="tns:acknowledgementResponseMsg"/>-->
+<!--			<fault name="fault" message="tns:manageOrderFault"/>-->
+<!--		</operation>-->
+<!--		<operation name="manageGetNotification">-->
+<!--			<input message="tns:getNotificationsRequestMsg"/>-->
+<!--			<output message="tns:getNotificationsResponseMsg"/>-->
+<!--			<fault name="fault" message="tns:manageOrderFault"/>-->
+<!--		</operation>-->
+<!--		<operation name="manageCreateLog">-->
+<!--			<input message="tns:createLogRequestMsg"/>-->
+<!--			<output message="tns:acknowledgementResponseMsg"/>-->
+<!--			<fault name="fault" message="tns:manageOrderFault"/>-->
+<!--		</operation>-->
+<!--		<operation name="manageUpdateProductStock">-->
+<!--			<input message="tns:updateProductStockRequestMsg"/>-->
+<!--			<output message="tns:acknowledgementResponseMsg"/>-->
+<!--			<fault name="fault" message="tns:manageOrderFault"/>-->
+<!--		</operation>-->
+	</portType>
+
+	<binding name="manageOrderServiceSOAPBinding" type="tns:ManageOrderServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<operation name="createManageOrders">
+			<soap:operation soapAction="createManageOrders" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="manageUpdateOrderStatus">
+			<soap:operation soapAction="manageUpdateOrderStatus" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="manageGetOrdersBySellerId">
+			<soap:operation soapAction="manageGetOrdersBySellerId" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+<!--		<operation name="manageCreateNotification">-->
+<!--			<soap:operation soapAction="manageCreateNotification" />-->
+<!--			<input>-->
+<!--				<soap:body use="literal" />-->
+<!--			</input>-->
+<!--			<output>-->
+<!--				<soap:body use="literal" />-->
+<!--			</output>-->
+<!--			<fault name="fault">-->
+<!--				<soap:fault name="fault" use="literal" />-->
+<!--			</fault>-->
+<!--		</operation>-->
+<!--		<operation name="manageGetNotification">-->
+<!--			<soap:operation soapAction="manageGetNotification" />-->
+<!--			<input>-->
+<!--				<soap:body use="literal" />-->
+<!--			</input>-->
+<!--			<output>-->
+<!--				<soap:body use="literal" />-->
+<!--			</output>-->
+<!--			<fault name="fault">-->
+<!--				<soap:fault name="fault" use="literal" />-->
+<!--			</fault>-->
+<!--		</operation>-->
+<!--		<operation name="manageCreateLog">-->
+<!--			<soap:operation soapAction="manageCreateLog" />-->
+<!--			<input>-->
+<!--				<soap:body use="literal" />-->
+<!--			</input>-->
+<!--			<output>-->
+<!--				<soap:body use="literal" />-->
+<!--			</output>-->
+<!--			<fault name="fault">-->
+<!--				<soap:fault name="fault" use="literal" />-->
+<!--			</fault>-->
+<!--		</operation>-->
+<!--		<operation name="manageUpdateProductStock">-->
+<!--			<soap:operation soapAction="manageUpdateProductStock" />-->
+<!--			<input>-->
+<!--				<soap:body use="literal" />-->
+<!--			</input>-->
+<!--			<output>-->
+<!--				<soap:body use="literal" />-->
+<!--			</output>-->
+<!--			<fault name="fault">-->
+<!--				<soap:fault name="fault" use="literal" />-->
+<!--			</fault>-->
+<!--		</operation>-->
+
+	</binding>
+	<service name="ManageOrderService">
+		<port name="ManageOrderServicePort" binding="tns:manageOrderServiceSOAPBinding">
+			<soap:address location="http://localhost:8088/ws/manageOrderService" />
+		</port>
+	</service>
+</definitions>

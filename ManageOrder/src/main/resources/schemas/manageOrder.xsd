@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.wstutorial.com/ws/ManageOrderService"
+           xmlns:tns="http://www.wstutorial.com/ws/ManageOrderService"
+           xmlns:order="http://www.wstutorial.com/ws/OrderService">
+
+    <xs:import namespace="http://www.wstutorial.com/ws/OrderService" schemaLocation="../../../../../Order/src/main/resources/schemas/order.xsd"/>
+
+    <xs:complexType name="ManageOrderType">
+        <xs:sequence>
+            <xs:element type="order:Order" name="order" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="CreateManageOrder" type="tns:ManageOrderType"/>
+
+</xs:schema>
