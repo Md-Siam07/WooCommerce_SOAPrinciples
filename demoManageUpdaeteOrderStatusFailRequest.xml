@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ord="http://www.wstutorial.com/ws/OrderService">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ord:updateOrderStatusRequest>
+         <id>?</id>
+         <status>PENDING</status>
+      </ord:updateOrderStatusRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
