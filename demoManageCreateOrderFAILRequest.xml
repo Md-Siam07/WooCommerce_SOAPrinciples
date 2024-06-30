@@ -1,0 +1,27 @@
+<!-- this produces fail response, since the product is invalid -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:man="http://www.wstutorial.com/ws/ManageOrderService">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <man:ManageCreateOrder>
+         <order>
+            <id>?</id>
+            <!--1 or more repetitions:-->
+            <products>
+               <!--1 or more repetitions:-->
+               <product>
+                  <productHeader>
+                     <!--You may enter the following 3 items in any order-->
+                     <id>?</id>
+                     <label>?</label>
+                     <price>?</price>
+                  </productHeader>
+                  <quantity>1</quantity>
+               </product>
+            </products>
+            <sellerId>?</sellerId>
+            <customerId>?</customerId>
+            <status>?</status>
+         </order>
+      </man:ManageCreateOrder>
+   </soapenv:Body>
+</soapenv:Envelope>
