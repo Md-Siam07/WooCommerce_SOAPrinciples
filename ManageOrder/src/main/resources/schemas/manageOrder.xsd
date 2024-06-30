@@ -12,6 +12,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="CreateManageOrder" type="tns:ManageOrderType"/>
+    <xs:element name="ManageCreateOrder" type="tns:ManageOrderType"/>
 
 </xs:schema>

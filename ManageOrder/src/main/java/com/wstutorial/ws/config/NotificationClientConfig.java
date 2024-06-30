@@ -13,7 +13,7 @@ public class NotificationClientConfig {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setPackagesToScan("com.wstutorial.ws.notificationservice", "com.wstutorial.ws.commonservice", "com.wstutorial.ws.orderservice");
+        marshaller.setPackagesToScan("com.wstutorial.ws.notificationservice", "com.wstutorial.ws.commonservice", "com.wstutorial.ws.orderservice", "com.wstutorial.ws.logservice");
 //        marshaller.setContextPath("com.wstutorial.ws.notificationservice");
 //        marshaller.setClassesToBeBound(CreateNotificationRequest.class);
         return marshaller;

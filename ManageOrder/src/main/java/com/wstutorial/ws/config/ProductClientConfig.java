@@ -11,7 +11,7 @@ public class ProductClientConfig {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setPackagesToScan("com.wstutorial.ws.productservice", "com.wstutorial.ws.commonservice", "com.wstutorial.ws.orderservice", "com.wstutorial.ws.notificationservice");
+        marshaller.setPackagesToScan("com.wstutorial.ws.productservice", "com.wstutorial.ws.commonservice", "com.wstutorial.ws.orderservice", "com.wstutorial.ws.notificationservice", "com.wstutorial.ws.logservice");
         return marshaller;
     }
 

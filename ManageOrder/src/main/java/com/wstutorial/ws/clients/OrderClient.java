@@ -24,6 +24,7 @@ public class OrderClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive(getOrdersBySellerIdRequest);
     }
 
+
     public AcknowledgementCodeResponse changeOrderStatus(UpdateOrderStatusRequest updateOrderStatusRequest) {
         return (AcknowledgementCodeResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(updateOrderStatusRequest);

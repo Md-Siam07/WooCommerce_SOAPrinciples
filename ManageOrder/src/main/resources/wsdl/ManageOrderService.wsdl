@@ -39,7 +39,7 @@
 	</message>
 
 	<message name="createManageOrdersRequestMsg">
-		<part name="params" element="manageOrder:CreateManageOrder" />
+		<part name="params" element="manageOrder:ManageCreateOrder" />
 	</message>
 	<message name="acknowledgementResponseMsg">
 		<part name="params" element="common:AcknowledgementCodeResponse" />
@@ -80,7 +80,7 @@
 
 	<portType name="ManageOrderServicePortType">
 
-		<operation name="createManageOrders">
+		<operation name="manageCreateOrders">
 			<input message="tns:createManageOrdersRequestMsg" />
 			<output message="tns:acknowledgementResponseMsg" />
 			<fault name="fault" message="tns:manageOrderFault" />
@@ -120,7 +120,7 @@
 	<binding name="manageOrderServiceSOAPBinding" type="tns:ManageOrderServicePortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 
-		<operation name="createManageOrders">
+		<operation name="manageCreateOrders">
 			<soap:operation soapAction="createManageOrders" />
 			<input>
 				<soap:body use="literal" />
