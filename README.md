@@ -78,7 +78,7 @@ To install and run the WooCommerce application, follow these steps:
 2. **Clone the Repository:**
    ```sh
    git clone https://github.com/Md-Siam07/WooCommerce_SOAPrinciples.git
-   cd WooCommerce_SOAPrinciples```
+   cd WooCommerce_SOAPrinciples
    
 3. **Load Each Folder into IntelliJ:**
    - Open IntelliJ IDEA.
