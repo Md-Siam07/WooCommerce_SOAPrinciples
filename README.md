@@ -131,9 +131,15 @@ Initially, the `updateProduct` method was used to update product stock. However,
 Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus` operation, not only relying on `UpdateOrder`. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
 
 
-### Autonomy
+### 5 Autonomy
 
 All services in WooCommerce are self-agnostic. Each service maintains its own data (in our implementation, we used lists instead of a database connection) and has separate business logic. This design ensures that services operate independently, enhancing modularity and maintainability.
+
+#### Contract Denormalization
+Some capabilities were denormalized using the **Contract Denormalization** pattern. This approach was used to split comprehensive operations into more specific ones, such as:
+- `GetProduct` was denormalized into `GetProductHeader` and `GetProductDetail`.
+
+Additionally, partially redundant capabilities were introduced to enhance the functionality and accessibility of the services.
 
 #### Service Autonomy
 
@@ -141,14 +147,23 @@ All the services such as `Customer Service`, `Seller Service`, `Order Service`, 
 
 #### Exception: ManageOrder Service
 
-The `ManageOrder service` is an exception to this autonomy. It orchestrates the functionalities of the Order, Product, Logging, and Notification services, making it a shared service. This shared autonomy means that while ManageOrder depends on other services to complete its tasks, it leverages their capabilities to perform its specific functions effectively.
+The `ManageOrder service` is an exception to this autonomy. It orchestrates the functionalities of the Order, Product, Logging, and Notification services, making it a shared service. This **`Shared Autonomy`** means that while ManageOrder depends on other services to complete its tasks, it leverages their capabilities to perform its specific functions effectively.
 
 
-### 6. Statelessness
-Services are designed to be stateless. Each service call is independent and does not rely on previous interactions. This stateless nature simplifies scaling and maintenance, as services do not need to retain information about previous requests.
+### 6 Statelessness
+
+All services in WooCommerce are fully stateless. While implementing these services, the following routing conventions commonly used in REST were followed to ensure stateless behavior:
+- `getAll`
+- `getById`
+- `update`
+- `delete`
+- `create`
+
+Although some denormalization and redundant capabilities were introduced such as `getHeader`, `updateStock`, the entire system remains stateless, as it does not depend on the outcomes of previous request. For the current solution, authentication, cookies, and other stateful mechanisms were omitted, further reducing the potential for introducing statefulness. This ensures that each service call is independent, promoting scalability and simplicity.
 
 ### 7. Composability
-Services are designed to be composable, allowing them to be combined to form more complex operations. The ManageOrder service orchestrates other services to handle the order flow, demonstrating the composability and flexibility of the architecture.
+All services in this project are highly composable, allowing them to be combined to create new, composite services. For example, the `**ManageOrder**` service integrates functionalities from `Order`, `Product`, `Notification` and `Logging` services.
+
 
 ### 8. Discoverability
 Services are discoverable by using there WSDL.
