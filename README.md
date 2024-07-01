@@ -1,77 +1,66 @@
-# WooCommerce SOAP-based Microservices Application
+# WooCommerce Application
 
-## Introduction
+## Overview
 
-WooCommerce is a robust, SOAP-based e-commerce application designed with microservices architecture. It provides a comprehensive platform for managing online stores with multiple sellers, efficient order processing, and real-time notifications.
-
-## Key Features
-
-- Multi-seller support
-- Order management (placement, confirmation, declination)
-- Real-time stock updates
-- Notification system for sellers and customers
-- Logging service for system events
-- SOAP-based API for all services
-
-## System Architecture
-
-WooCommerce follows Service-Oriented Architecture (SOA) principles, comprising several microservices:
-
-### Entity Services (CRUD Operations)
-- Customer Service
-- Seller Service
-- Order Service
-- Product Service
-
-### Utility Services
-- Notification Service
-- Logging Service
-
-### Task Service
-- ManageOrder Service (orchestrates other services)
-
-### Common Service
-- Holds shared schemas used across the system
-
-## SOA Principles Implementation
-
-1. **Schema Centralization**: Reuses predefined schemas, new schemas are created only when necessary.
-
-2. **Loose Coupling**: Services are independent, with ManageOrder being the only service that consumes others.
-
-3. **Abstraction**: Implementation details are hidden behind well-defined WSDL interfaces.
-
-4. **Reusability**: Services are designed for maximum reusability.
-
-5. **Autonomy**: All services except ManageOrder are self-dependent and autonomous.
-
-6. **Statelessness**: Services do not maintain state between requests.
-
-7. **Composability**: Services can be composed to create complex operations.
+WooCommerce is a SOAP-based application designed for seamless e-commerce operations. The application facilitates a smooth order flow where customers can place orders, and sellers manage their respective portals. The architecture follows Service-Oriented Architecture (SOA) principles, ensuring schema centralization, loose coupling, and service reusability.
 
 ## Order Flow
 
-1. Customer places an order (status: pending)
-2. Notification sent to seller
-3. Order placement logged
-4. Seller confirms or declines the order
-5. If confirmed:
-   - Product stock updated
-   - Notification sent to customer
-   - Confirmation logged
+1. **Customer Order Placement:**
+   - Customers place orders from the shop.
+   - The order is initially in the pending state.
+   - A notification is sent to the seller upon order placement.
+   - A log message is generated for the order placement.
 
-## API Documentation
+2. **Seller Order Management:**
+   - Sellers can confirm or decline an order.
+   - Upon confirmation, the stock of the respective products is updated.
+   - A notification is sent to the customer upon order confirmation.
+   - A log message is generated for the order confirmation.
 
-[Include links or brief descriptions of API endpoints for each service]
+## Services
 
-## Setup and Deployment
+### Entity Services
+- **Customer Service:** Manages CRUD operations for customer data.
+- **Seller Service:** Manages CRUD operations for seller data.
+- **Order Service:** Manages CRUD operations for order data.
+- **Product Service:** Manages CRUD operations for product data.
 
-[Include instructions for setting up and deploying the application]
+### Utility Services
+- **Notification Service:** Handles notifications to customers and sellers.
+- **Logging Service:** Manages logging activities for various events.
 
-## Contributing
+### Task Service
+- **ManageOrder Service:** Orchestrates the other services to manage the order lifecycle.
 
-[Include guidelines for contributing to the project]
+### Common Service
+- **Common Service:** Contains common schemas reused across the system.
 
-## License
+## SOA Principles
 
-[Specify the license under which the project is distributed]
+- **Schema Centralization:** Reuses predefined schemas and defines new schemas only when necessary.
+- **Loose Coupling:** Services are designed to be independent. No service depends on another except for the ManageOrder service, which orchestrates other services.
+- **Abstraction:** Implementation details are hidden through WSDL files, ensuring abstraction.
+- **Reusability:** Services are implemented in a reusable manner.
+- **Autonomy:** All services except for ManageOrder are self-dependent and autonomous.
+- **Statelessness:** All services are stateless and composable.
+
+## Technical Details
+
+### Service Implementation
+
+- **Customer, Seller, Order, Product Services:** Handle CRUD operations independently.
+- **Notification and Logging Services:** Utilized by the ManageOrder service to avoid direct coupling with other entity services.
+- **ManageOrder Service:** The only service that consumes and orchestrates other services, ensuring a streamlined order management process.
+
+### Abstraction and WSDL
+
+- The WSDL files provide a clear interface for each service, hiding the underlying implementation details and exposing only the necessary operations and data structures.
+
+### Reusability and Autonomy
+
+- Each service is designed for maximum reusability and can function independently of others, ensuring a flexible and maintainable architecture.
+
+## Contact
+
+For any queries or further information, please contact the development team at [bsse1104@iit.du.ac.bd].
