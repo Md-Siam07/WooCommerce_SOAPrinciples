@@ -108,8 +108,9 @@ All services, except for the task service `ManageOrder`, adhere to the following
 
 The `ManageOrder` service deviates from the standard levels of abstraction due to its complex business flow associated with the exchange of order data.
 
-#### Functional Abstraction (Content Abstraction)
-- **Detailed:** Due to the complex business flow, this service’s contract has a low level of functional abstraction.
+| **Abstraction Level**                  | **Description**                                                                                     |
+|----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Functional Abstraction (Content Abstraction)** | **Detailed:** Due to the complex business flow, this service’s contract has a low level of functional abstraction.          |
 
 ### 4. Reusability
 
@@ -130,8 +131,25 @@ Initially, the `updateProduct` method was used to update product stock. However,
 Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus` operation, not only relying on `UpdateOrder`. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
 
 
-### 5. Autonomy
-Each service, except for the ManageOrder service, is self-contained and autonomous. This means they operate independently and do not rely on the state or behavior of other services, ensuring high reliability and fault tolerance.
+### Autonomy
+
+All services in WooCommerce are self-agnostic. Each service maintains its own data (in our implementation, we used lists instead of a database connection) and has separate business logic. This design ensures that services operate independently, enhancing modularity and maintainability.
+
+#### Service Autonomy
+
+- **Customer Service**
+- **Seller Service**
+- **Order Service**
+- **Product Service**
+- **Notification Service**
+- **Logging Service**
+
+These services are autonomous, meaning they do not depend on other services for their functionalities.
+
+### Exception: ManageOrder Service
+
+The **ManageOrder** service is an exception to this autonomy. It orchestrates the functionalities of the Order, Product, Logging, and Notification services, making it a shared service. This shared autonomy means that while ManageOrder depends on other services to complete its tasks, it leverages their capabilities to perform its specific functions effectively.
+
 
 ### 6. Statelessness
 Services are designed to be stateless. Each service call is independent and does not rely on previous interactions. This stateless nature simplifies scaling and maintenance, as services do not need to retain information about previous requests.
