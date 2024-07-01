@@ -62,15 +62,36 @@ All WSDL definitions in WooCommerce have been standardized to ensure consistency
 
 #### Standardized Service and Data Representation Layers
 Schema centralization is implemented by reusing predefined schemas and defining new schemas only when necessary. This approach maintains a centralized repository for all schemas, ensuring consistency and reuse across the application. Some of the examples are:
+
 - `Product` schema is broken down to `ProductHeader` and `Product`
 - `StatusCode`, `fault` was moved to `CommonService` and reused in all services
 - `ManageOrder` reuses the schemas defined in `Order, Product` 
 
 ### 2. Loose Coupling
-All services are designed to be loosely coupled, meaning they operate independently of each other. No service depends on any other service except for the ManageOrder service. This reduces dependencies and increases the flexibility and maintainability of the system. Even logging and notifications are managed by the ManageOrder service to avoid direct dependencies among other services.
+All the services in our design exhibit a high level of logic-to-contract coupling because they are custom services for which standardized service contracts are delivered. The `Customer`, `Seller`, `Order`, and `Product` services are based on the entity service model, which deliberately decreases potential functional coupling to external or parent business process logic. The same applies to utility services such as `Notification` and `Logging`. 
+`ManageOrder`, which is a task-centric service, is bound to WooCommerce’s business process, which is a very specific procedure within the WooCommerce application. As a result, this service shows targeted functional coupling, which is intentionally done during its design.
 
 ### 3. Abstraction
-Service abstraction is achieved through WSDL (Web Services Description Language). The implementation details of each service are hidden, allowing clients to interact with services via well-defined interfaces without needing to understand the underlying implementations. This abstraction facilitates easier integration and usage of the services.
+All services, except for the task service ManageOrder, adhere to the following levels of abstraction:
+
+#### Functional Abstraction (Content Abstraction)
+- **Concise:** The service contract provides targeted functionality with limited constraints.
+
+#### Technology Abstraction (Access Control)
+- **Open Access:** The technologies used to build and implement this service are openly documented and published as part of architecture specifications.
+
+#### Programmatic Abstraction (Access Control)
+- **Open Access:** Source code and design specifications are openly available on the local LAN.
+
+#### Quality of Service (Access Control)
+- **Open Access:** The SLA is published alongside the service contract.
+
+#### Exception: ManageOrder Service
+
+The ManageOrder service deviates from the standard levels of abstraction due to its complex business flow associated with the exchange of order data.
+
+#### Functional Abstraction (Content Abstraction)
+- **Detailed:** Due to the complex business flow, this service’s contract has a low level of functional abstraction.
 
 ### 4. Reusability
 Services are implemented in a reusable manner, allowing common functionalities to be abstracted into utility services. This promotes the reuse of existing services and components, reducing redundancy and development time for new features.
