@@ -8,58 +8,92 @@ WooCommerce is a SOAP-based application designed for seamless e-commerce operati
 
 1. **Customer Order Placement:**
    - Customers place orders from the shop.
+   - The order's validity is checked. An order is valid if:
+      - All the products contained in the order are valid
+      - The items are in stock.
    - The order is initially in the pending state.
    - A notification is sent to the seller upon order placement.
    - A log message is generated for the order placement.
 
 2. **Seller Order Management:**
    - Sellers can confirm or decline an order.
-   - Upon confirmation, the stock of the respective products is updated.
-   - A notification is sent to the customer upon order confirmation.
-   - A log message is generated for the order confirmation.
+   - Upon confirmation:
+      - The stock of the respective products is updated.
+      - A notification is sent to the customer upon order confirmation.
+      - A log message is generated for the order confirmation.
 
 ## Services
 
 ### Entity Services
-- **Customer Service:** Manages CRUD operations for customer data.
-- **Seller Service:** Manages CRUD operations for seller data.
-- **Order Service:** Manages CRUD operations for order data.
-- **Product Service:** Manages CRUD operations for product data.
+- **Customer Service:** Provides CRUD operations for customers.
+- **Seller Service:** Manages seller information and operations.
+- **Order Service:** Handles order placement, updates, and queries.
+- **Product Service:** Manages product details and inventory.
 
 ### Utility Services
-- **Notification Service:** Handles notifications to customers and sellers.
-- **Logging Service:** Manages logging activities for various events.
+- **Notification Service:** Sends notifications to customers and sellers.
+- **Logging Service:** Records log messages for various events.
 
 ### Task Service
-- **ManageOrder Service:** Orchestrates the other services to manage the order lifecycle.
+- **ManageOrder Service:** Orchestrates the other services to manage the order flow.
 
 ### Common Service
-- **Common Service:** Contains common schemas reused across the system.
+- **Common Service:** Contains common schemas used across the system.
 
 ## SOA Principles
 
-- **Schema Centralization:** Reuses predefined schemas and defines new schemas only when necessary.
-- **Loose Coupling:** Services are designed to be independent. No service depends on another except for the ManageOrder service, which orchestrates other services.
-- **Abstraction:** Implementation details are hidden through WSDL files, ensuring abstraction.
-- **Reusability:** Services are implemented in a reusable manner.
-- **Autonomy:** All services except for ManageOrder are self-dependent and autonomous.
-- **Statelessness:** All services are stateless and composable.
+WooCommerce is built upon the following SOA principles:
 
-## Technical Details
+### 1. Schema Centralization
+Schema centralization is implemented by reusing predefined schemas and defining new schemas only when necessary. This approach maintains a centralized repository for all schemas, ensuring consistency and reuse across the application.
 
-### Service Implementation
+### 2. Loose Coupling
+All services are designed to be loosely coupled, meaning they operate independently of each other. No service depends on any other service except for the ManageOrder service. This reduces dependencies and increases the flexibility and maintainability of the system. Even logging and notifications are managed by the ManageOrder service to avoid direct dependencies among other services.
 
-- **Customer, Seller, Order, Product Services:** Handle CRUD operations independently.
-- **Notification and Logging Services:** Utilized by the ManageOrder service to avoid direct coupling with other entity services.
-- **ManageOrder Service:** The only service that consumes and orchestrates other services, ensuring a streamlined order management process.
+### 3. Abstraction
+Service abstraction is achieved through WSDL (Web Services Description Language). The implementation details of each service are hidden, allowing clients to interact with services via well-defined interfaces without needing to understand the underlying implementations. This abstraction facilitates easier integration and usage of the services.
 
-### Abstraction and WSDL
+### 4. Reusability
+Services are implemented in a reusable manner, allowing common functionalities to be abstracted into utility services. This promotes the reuse of existing services and components, reducing redundancy and development time for new features.
 
-- The WSDL files provide a clear interface for each service, hiding the underlying implementation details and exposing only the necessary operations and data structures.
+### 5. Autonomy
+Each service, except for the ManageOrder service, is self-contained and autonomous. This means they operate independently and do not rely on the state or behavior of other services, ensuring high reliability and fault tolerance.
 
-### Reusability and Autonomy
+### 6. Statelessness
+Services are designed to be stateless. Each service call is independent and does not rely on previous interactions. This stateless nature simplifies scaling and maintenance, as services do not need to retain information about previous requests.
 
-- Each service is designed for maximum reusability and can function independently of others, ensuring a flexible and maintainable architecture.
+### 7. Composability
+Services are designed to be composable, allowing them to be combined to form more complex operations. The ManageOrder service orchestrates other services to handle the order flow, demonstrating the composability and flexibility of the architecture.
+
+### 8. Discoverability
+Services are discoverable by using there WSDL.
+
+## How to Install
+
+To install and run the WooCommerce application, follow these steps:
+
+1. **Ensure Ports 8081 to 8089 are Free:**
+   - Make sure that ports 8081 to 8089 are free and unused on your system to avoid conflicts.
+
+2. **Clone the Repository:**
+   ```sh
+   git clone https://github.com/Md-Siam07/WooCommerce_SOAPrinciples.git
+   cd WooCommerce_SOAPrinciples```
+   
+3. **Load Each Folder into IntelliJ:**
+   - Open IntelliJ IDEA.
+   - Load each folder (e.g., Customer, Seller, Order, Product, Notification, Logging, ManageOrder, Common) as distinct projects. To do this:
+   - Click on File > Open.
+   - Select the folder and click OK.
+   - Follow the prompts to load the project.
+   - 
+4. **Run the Projects:**
+   - For each loaded project, configure the run configurations if necessary.
+   - Run the project to start the respective service.
+   
+## Conclusion
+
+WooCommerce is a robust and flexible application built with a focus on modularity, reusability, and adherence to SOA principles. This ensures a high-quality architecture that can easily adapt to changing business requirements while maintaining efficiency and reliability.
 
 ## Contact
 
