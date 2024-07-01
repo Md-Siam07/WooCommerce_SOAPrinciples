@@ -97,17 +97,12 @@ All the services in our design exhibit a high level of logic-to-contract couplin
 ### 3. Abstraction
 All services, except for the task service `ManageOrder`, adhere to the following levels of abstraction:
 
-#### Functional Abstraction (Content Abstraction)
-- **Concise:** The service contract provides targeted functionality with limited constraints.
-
-#### Technology Abstraction (Access Control)
-- **Open Access:** The technologies used to build and implement this service are openly documented and published as part of architecture specifications.
-
-#### Programmatic Abstraction (Access Control)
-- **Open Access:** Source code and design specifications are openly available on the local LAN.
-
-#### Quality of Service (Access Control)
-- **Open Access:** The SLA is published alongside the service contract.
+| **Abstraction Level**                  | **Description**                                                                                     |
+|----------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Functional Abstraction (Content Abstraction)** | **Concise:** The service contract provides targeted functionality with limited constraints.          |
+| **Technology Abstraction (Access Control)**      | **Open Access:** The technologies used to build and implement this service are openly documented and published as part of architecture specifications. |
+| **Programmatic Abstraction (Access Control)**    | **Open Access:** Source code and design specifications are openly available on the local LAN.        |
+| **Quality of Service (Access Control)**          | **Open Access:** The SLA is published alongside the service contract.                                |
 
 #### Exception: ManageOrder Service
 
@@ -122,7 +117,7 @@ All entity and utility services in WooCommerce are self-agnostic services. They 
 
 #### Task Service and Entity Services
 
-The task service, **ManageOrder**, orchestrates operations involving multiple entity and utility services. For instance, during certain tasks, such as updating the order status from PENDING to CONFIRMED or DECLINED, multiple services are utilized.
+The task service, `ManageOrder`, orchestrates operations involving multiple entity and utility services. For instance, during certain tasks, such as updating the order status from PENDING to CONFIRMED or DECLINED, multiple services are utilized.
 
 ##### Example: Updating Order Status and Product Stock
 
@@ -132,7 +127,7 @@ When an order is confirmed:
 
 Initially, the `updateProduct` method was used to update product stock. However, it required the entire product entity as input, which was inefficient for our needs. To address this, a more focused operation, `UpdateProductStock`, was implemented to specifically handle stock updates.
 
-Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus` operation. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
+Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus` operation, not only relying on `UpdateOrder`. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
 
 
 ### 5. Autonomy
