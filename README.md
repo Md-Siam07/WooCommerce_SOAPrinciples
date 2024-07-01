@@ -48,19 +48,19 @@ WooCommerce is built upon the following SOA principles:
 
 Service contracts were standardized using some Functional Expression Standard and Data Representation Standards
 
-## Standardized WSDL Definitions
+#### Standardized WSDL Definitions
 All WSDL definitions in WooCommerce have been standardized to ensure consistency and clarity. The following conventions are followed:
 
 - **Entity Services:** Named according to the corresponding business entities they represent.
 - **Task Services:** Named based on the process they automate, prefixed with an appropriate verb.
 - **Operations:** Named using the format: verb + noun.
 
-### Examples
+###### Examples
 - `getProductRequest` Operation
 - `getProductResponse` Operation
 - `manageCreateOrderRequest` Operation
 
-## Standardized Service and Data Representation Layers
+#### Standardized Service and Data Representation Layers
 Schema centralization is implemented by reusing predefined schemas and defining new schemas only when necessary. This approach maintains a centralized repository for all schemas, ensuring consistency and reuse across the application. Some of the examples are:
 - `Product` schema is broken down to `ProductHeader` and `Product`
 - `StatusCode`, `fault` was moved to `CommonService` and reused in all services
