@@ -137,18 +137,11 @@ All services in WooCommerce are self-agnostic. Each service maintains its own da
 
 #### Service Autonomy
 
-- **Customer Service**
-- **Seller Service**
-- **Order Service**
-- **Product Service**
-- **Notification Service**
-- **Logging Service**
+All the services such as `Customer Service`, `Seller Service`, `Order Service`, `Product Service`, `Notification Service`, `Logging Service` are autonomous, meaning they do not depend on other services for their functionalities. Thus they follow **`Pure Autonomy`**
 
-These services are autonomous, meaning they do not depend on other services for their functionalities.
+#### Exception: ManageOrder Service
 
-### Exception: ManageOrder Service
-
-The **ManageOrder** service is an exception to this autonomy. It orchestrates the functionalities of the Order, Product, Logging, and Notification services, making it a shared service. This shared autonomy means that while ManageOrder depends on other services to complete its tasks, it leverages their capabilities to perform its specific functions effectively.
+The `ManageOrder service` is an exception to this autonomy. It orchestrates the functionalities of the Order, Product, Logging, and Notification services, making it a shared service. This shared autonomy means that while ManageOrder depends on other services to complete its tasks, it leverages their capabilities to perform its specific functions effectively.
 
 
 ### 6. Statelessness
