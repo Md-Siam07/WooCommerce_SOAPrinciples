@@ -4,6 +4,29 @@
 
 WooCommerce is a SOAP-based application designed for seamless e-commerce operations. The application facilitates a smooth order flow where customers can place orders, and sellers manage their respective portals. The architecture follows Service-Oriented Architecture (SOA) principles, ensuring schema centralization, loose coupling, and service reusability.
 
+## How to Install
+
+To install and run the WooCommerce application, follow these steps:
+
+1. **Ensure Ports 8081 to 8089 are Free:**
+   - Make sure that ports 8081 to 8089 are free and unused on your system to avoid conflicts.
+
+2. **Clone the Repository:**
+   ```sh
+   git clone https://github.com/Md-Siam07/WooCommerce_SOAPrinciples.git
+   cd WooCommerce_SOAPrinciples
+   
+3. **Load Each Folder into IntelliJ:**
+   - Open IntelliJ IDEA.
+   - Load each folder (e.g., Customer, Seller, Order, Product, Notification, Logging, ManageOrder, Common) as distinct projects. To do this:
+   - Click on File > Open.
+   - Select the folder and click OK.
+   - Follow the prompts to load the project.
+     
+4. **Run the Projects:**
+   - For each loaded project, configure the run configurations if necessary.
+   - Run the project to start the respective service.
+
 ## Order Flow
 
 1. **Customer Order Placement:**
@@ -72,7 +95,7 @@ All the services in our design exhibit a high level of logic-to-contract couplin
 `ManageOrder`, which is a task-centric service, is bound to WooCommerce’s business process, which is a very specific procedure within the WooCommerce application. As a result, this service shows targeted functional coupling, which is intentionally done during its design.
 
 ### 3. Abstraction
-All services, except for the task service ManageOrder, adhere to the following levels of abstraction:
+All services, except for the task service `ManageOrder`, adhere to the following levels of abstraction:
 
 #### Functional Abstraction (Content Abstraction)
 - **Concise:** The service contract provides targeted functionality with limited constraints.
@@ -88,13 +111,29 @@ All services, except for the task service ManageOrder, adhere to the following l
 
 #### Exception: ManageOrder Service
 
-The ManageOrder service deviates from the standard levels of abstraction due to its complex business flow associated with the exchange of order data.
+The `ManageOrder` service deviates from the standard levels of abstraction due to its complex business flow associated with the exchange of order data.
 
 #### Functional Abstraction (Content Abstraction)
 - **Detailed:** Due to the complex business flow, this service’s contract has a low level of functional abstraction.
 
 ### 4. Reusability
-Services are implemented in a reusable manner, allowing common functionalities to be abstracted into utility services. This promotes the reuse of existing services and components, reducing redundancy and development time for new features.
+
+All entity and utility services in WooCommerce are self-agnostic services. They do not rely on the reuse of other service capabilities. Instead, they function independently, providing reusable and modular functionalities that the task service can call upon when needed.
+
+#### Task Service and Entity Services
+
+The task service, **ManageOrder**, orchestrates operations involving multiple entity and utility services. For instance, during certain tasks, such as updating the order status from PENDING to CONFIRMED or DECLINED, multiple services are utilized.
+
+##### Example: Updating Order Status and Product Stock
+
+When an order is confirmed:
+- The status of the order needs to be updated from PENDING to CONFIRMED.
+- The stock of the product items needs to be updated accordingly.
+
+Initially, the `updateProduct` method was used to update product stock. However, it required the entire product entity as input, which was inefficient for our needs. To address this, a more focused operation, `UpdateProductStock`, was implemented to specifically handle stock updates.
+
+Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus` operation. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
+
 
 ### 5. Autonomy
 Each service, except for the ManageOrder service, is self-contained and autonomous. This means they operate independently and do not rely on the state or behavior of other services, ensuring high reliability and fault tolerance.
@@ -108,29 +147,7 @@ Services are designed to be composable, allowing them to be combined to form mor
 ### 8. Discoverability
 Services are discoverable by using there WSDL.
 
-## How to Install
 
-To install and run the WooCommerce application, follow these steps:
-
-1. **Ensure Ports 8081 to 8089 are Free:**
-   - Make sure that ports 8081 to 8089 are free and unused on your system to avoid conflicts.
-
-2. **Clone the Repository:**
-   ```sh
-   git clone https://github.com/Md-Siam07/WooCommerce_SOAPrinciples.git
-   cd WooCommerce_SOAPrinciples
-   
-3. **Load Each Folder into IntelliJ:**
-   - Open IntelliJ IDEA.
-   - Load each folder (e.g., Customer, Seller, Order, Product, Notification, Logging, ManageOrder, Common) as distinct projects. To do this:
-   - Click on File > Open.
-   - Select the folder and click OK.
-   - Follow the prompts to load the project.
-     
-4. **Run the Projects:**
-   - For each loaded project, configure the run configurations if necessary.
-   - Run the project to start the respective service.
-   
 ## Conclusion
 
 WooCommerce is a robust and flexible application built with a focus on modularity, reusability, and adherence to SOA principles. This ensures a high-quality architecture that can easily adapt to changing business requirements while maintaining efficiency and reliability.
