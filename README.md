@@ -44,8 +44,27 @@ WooCommerce is a SOAP-based application designed for seamless e-commerce operati
 
 WooCommerce is built upon the following SOA principles:
 
-### 1. Schema Centralization
-Schema centralization is implemented by reusing predefined schemas and defining new schemas only when necessary. This approach maintains a centralized repository for all schemas, ensuring consistency and reuse across the application.
+### 1. Service Contract and Standardization
+
+Service contracts were standardized using some Functional Expression Standard and Data Representation Standards
+
+## Standardized WSDL Definitions
+All WSDL definitions in WooCommerce have been standardized to ensure consistency and clarity. The following conventions are followed:
+
+- **Entity Services:** Named according to the corresponding business entities they represent.
+- **Task Services:** Named based on the process they automate, prefixed with an appropriate verb.
+- **Operations:** Named using the format: verb + noun.
+
+### Examples
+- `getProductRequest` Operation
+- `getProductResponse` Operation
+- `manageCreateOrderRequest` Operation
+
+## Standardized Service and Data Representation Layers
+Schema centralization is implemented by reusing predefined schemas and defining new schemas only when necessary. This approach maintains a centralized repository for all schemas, ensuring consistency and reuse across the application. Some of the examples are:
+- `Product` schema is broken down to `ProductHeader` and `Product`
+- `StatusCode`, `fault` was moved to `CommonService` and reused in all services
+- `ManageOrder` reuses the schemas defined in `Order, Product` 
 
 ### 2. Loose Coupling
 All services are designed to be loosely coupled, meaning they operate independently of each other. No service depends on any other service except for the ManageOrder service. This reduces dependencies and increases the flexibility and maintainability of the system. Even logging and notifications are managed by the ManageOrder service to avoid direct dependencies among other services.
