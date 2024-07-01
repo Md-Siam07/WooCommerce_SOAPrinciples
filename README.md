@@ -162,11 +162,13 @@ All services in WooCommerce are fully stateless. While implementing these servic
 Although some denormalization and redundant capabilities were introduced such as `getHeader`, `updateStock`, the entire system remains stateless, as it does not depend on the outcomes of previous request. For the current solution, authentication, cookies, and other stateful mechanisms were omitted, further reducing the potential for introducing statefulness. This ensures that each service call is independent, promoting scalability and simplicity.
 
 ### 7. Composability
-All services in this project are highly composable, allowing them to be combined to create new, composite services. For example, the `**ManageOrder**` service integrates functionalities from `Order`, `Product`, `Notification` and `Logging` services.
+All services in this project are highly composable, allowing them to be combined to create new, composite services. For example, the **`ManageOrder`** service integrates functionalities from `Order`, `Product`, `Notification` and `Logging` services.
 
 
 ### 8. Discoverability
-Services are discoverable by using there WSDL.
+
+In this SOA project, all services are designed to be easily discovered across the LAN. Currently, services are not published to a service registry but can be published if needed. They utilize standard interfaces, such as SOAP endpoints, to facilitate straightforward discovery and integration into composite services like **`ManageOrder`**. This approach ensures that services can dynamically interact and collaborate based on standardized protocols and interfaces.
+
 
 
 ## Conclusion
