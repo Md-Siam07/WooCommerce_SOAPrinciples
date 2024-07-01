@@ -86,7 +86,7 @@ To install and run the WooCommerce application, follow these steps:
    - Click on File > Open.
    - Select the folder and click OK.
    - Follow the prompts to load the project.
-   - 
+     
 4. **Run the Projects:**
    - For each loaded project, configure the run configurations if necessary.
    - Run the project to start the respective service.
