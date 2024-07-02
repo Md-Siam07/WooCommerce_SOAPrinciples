@@ -126,9 +126,9 @@ When an order is confirmed:
 - The status of the order needs to be updated from `PENDING` to `CONFIRMED`.
 - The stock of the product items needs to be updated accordingly.
 
-Initially, the `updateProduct` method was used to update product stock. However, it required the entire product entity as input, which was inefficient for our needs. To address this, a more focused operation, `UpdateProductStock`, was implemented to specifically handle stock updates.
+Initially, the `updateProduct()` method was used to update product stock. However, it required the entire product entity as input, which was inefficient for our needs. To address this, a more focused operation, `UpdateProductStock()`, was implemented to specifically handle stock updates.
 
-Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus` operation, not only relying on `UpdateOrder`. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
+Similarly, the operation to update the order status was streamlined by creating the `UpdateOrderStatus()` operation, not only relying on `UpdateOrder()`. This approach ensures that operations are efficient and targeted, promoting better reusability and maintainability of the services.
 
 
 ### 5 Autonomy
@@ -137,7 +137,7 @@ All services in WooCommerce are self-agnostic. Each service maintains its own da
 
 #### Contract Denormalization
 Some capabilities were denormalized using the **Contract Denormalization** pattern. This approach was used to split comprehensive operations into more specific ones, such as:
-- `GetProduct` was denormalized into `GetProductHeader` and `GetProductDetail`.
+- `GetProduct()` was denormalized into `GetProductHeader()` and `GetProductDetail()`.
 
 Additionally, partially redundant capabilities were introduced to enhance the functionality and accessibility of the services.
 
