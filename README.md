@@ -118,12 +118,12 @@ All entity and utility services in WooCommerce are self-agnostic services. They 
 
 #### Task Service and Entity Services
 
-The task service, `ManageOrder`, orchestrates operations involving multiple entity and utility services. For instance, during certain tasks, such as updating the order status from PENDING to CONFIRMED or DECLINED, multiple services are utilized.
+The task service, `ManageOrder`, orchestrates operations involving multiple entity and utility services. For instance, during certain tasks, such as updating the order status from `PENDING` to `CONFIRMED` or `DECLINED`, multiple services are utilized.
 
 ##### Example: Updating Order Status and Product Stock
 
 When an order is confirmed:
-- The status of the order needs to be updated from PENDING to CONFIRMED.
+- The status of the order needs to be updated from `PENDING` to `CONFIRMED`.
 - The stock of the product items needs to be updated accordingly.
 
 Initially, the `updateProduct` method was used to update product stock. However, it required the entire product entity as input, which was inefficient for our needs. To address this, a more focused operation, `UpdateProductStock`, was implemented to specifically handle stock updates.
@@ -180,4 +180,4 @@ WooCommerce is a robust and flexible application built with a focus on modularit
 
 ## Contact
 
-For any queries or further information, please contact the development team at [bsse1104@iit.du.ac.bd].
+For any queries or further information, please contact the developer at [bsse1104@iit.du.ac.bd].
