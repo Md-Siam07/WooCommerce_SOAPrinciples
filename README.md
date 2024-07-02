@@ -164,6 +164,9 @@ Although some denormalization and redundant capabilities were introduced such as
 ### 7. Composability
 All services in this project are highly composable, allowing them to be combined to create new, composite services. For example, the **`ManageOrder`** service integrates functionalities from `Order`, `Product`, `Notification` and `Logging` services.
 
+- The `updateOrderStatusRequest()` gets the order information by calling `getOrderById()` from OrderService, then updates the order status by calling `updateOrderStatus()`, then creates a notification by calling `createNotification()` from NotificationService and finally places a Log Message by calling `createLog()`. Therefore the capability is a composition of capabilities from 3 other services.
+- Similar example can be given for `createManageOrders()`. It first receives the list of all products by calling `getProducts()` from ProductsService, verifies the order items, saves the order by `createOrder()`, sends a notification and logs the message. Therefore it is a composition of 4 other services.
+
 
 ### 8. Discoverability
 
