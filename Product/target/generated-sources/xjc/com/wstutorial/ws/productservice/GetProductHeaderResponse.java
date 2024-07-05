@@ -10,6 +10,7 @@ package com.wstutorial.ws.productservice;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element name="product" type="{http://www.wstutorial.com/ws/ProductService}ProductHeader"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -33,9 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "getProductsRequest")
-public class GetProductsRequest {
+@XmlType(name = "", propOrder = {
+    "product"
+})
+@XmlRootElement(name = "getProductHeaderResponse")
+public class GetProductHeaderResponse {
 
+    @XmlElement(required = true)
+    protected ProductHeader product;
+
+    /**
+     * Gets the value of the product property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ProductHeader }
+     *     
+     */
+    public ProductHeader getProduct() {
+        return product;
+    }
+
+    /**
+     * Sets the value of the product property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ProductHeader }
+     *     
+     */
+    public void setProduct(ProductHeader value) {
+        this.product = value;
+    }
 
 }

@@ -17,7 +17,9 @@ com/wstutorial/ws/productservice/CreateProductRequest.class
 com/wstutorial/ws/productservice/UpdateProductStockRequest.class
 com/wstutorial/ws/productservice/DeleteProductRequest.class
 com/wstutorial/ws/productservice/GetProductResponse.class
+com/wstutorial/ws/productservice/GetProductHeaderResponse.class
 com/wstutorial/ws/productservice/GetProductsRequest.class
 com/wstutorial/ws/commonservice/AcknowledgementCodeResponse.class
 com/wstutorial/ws/commonservice/StatusCode.class
+com/wstutorial/ws/productservice/GetProductHeaderRequest.class
 com/wstutorial/ws/ProductService.class

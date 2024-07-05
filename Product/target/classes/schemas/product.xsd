@@ -74,6 +74,22 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="getProductHeaderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getProductHeaderResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="tns:ProductHeader" name="product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     
     <xs:element name="updateProductStockRequest">
         <xs:complexType>

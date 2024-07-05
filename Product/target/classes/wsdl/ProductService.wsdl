@@ -59,6 +59,13 @@
 		<part name="params" element="product:getProductResponse"/>
 	</message>
 
+	<message name="getProductHeaderRequestMsg">
+		<part name="params" element="product:getProductHeaderRequest" />
+	</message>
+	<message name="getProductHeaderResponseMsg">
+		<part name="params" element="product:getProductHeaderResponse" />
+	</message>
+
 	<portType name="ProductServicePortType">
 <!--		<operation name="deleteProduct">-->
 <!--			<input message="tns:deleteProductRequestMsg" />-->
@@ -95,22 +102,15 @@
 			<output message="tns:sendAcknowledgementMsg"/>
 			<fault name="fault" message="tns:productFault"/>
 		</operation>
+		<operation name="getProductHeader">
+			<input message="tns:getProductHeaderRequestMsg" />
+			<output message="tns:getProductHeaderResponseMsg" />
+			<fault name="fault" message="tns:productFault" />
+		</operation>
 	</portType>
 
 	<binding name="productServiceSOAPBinding" type="tns:ProductServicePortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
-		<operation name="deleteProduct">
-			<soap:operation soapAction="deleteProduct" />
-			<input>
-				<soap:body use="literal" />
-			</input>
-			<output>
-				<soap:body use="literal" />
-			</output>
-			<fault name="fault">
-				<soap:fault name="fault" use="literal" />
-			</fault>
-		</operation>
 		<operation name="createProduct">
 			<soap:operation soapAction="createProduct" />
 			<input>
@@ -137,6 +137,18 @@
 		</operation>
 		<operation name="getProducts">
 			<soap:operation soapAction="getProducts" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="fault">
+				<soap:fault name="fault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="getProductHeader">
+			<soap:operation soapAction="getProductHeader" />
 			<input>
 				<soap:body use="literal" />
 			</input>

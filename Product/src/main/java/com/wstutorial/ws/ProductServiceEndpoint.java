@@ -54,6 +54,18 @@ public class ProductServiceEndpoint {
 		return response;
 	}
 
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductHeaderRequest" )
+	@ResponsePayload
+	public GetProductHeaderResponse getProductHeader(@RequestPayload GetProductHeaderRequest request)throws Exception  {
+		System.out.println("get header called");
+		ObjectFactory factory = new ObjectFactory();
+		GetProductHeaderResponse response = factory.createGetProductHeaderResponse();
+
+		ProductHeader productHeader = productRepository.getProductHeaderById(request.getId());
+		response.setProduct(productHeader);
+		return response;
+	}
+
 //	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteProductRequest" )
 //	@ResponsePayload
 //	public AcknowledgementCodeResponse deleteProduct(@RequestPayload DeleteProductRequest request)throws Exception  {

@@ -64,6 +64,17 @@ public class ProductRepository {
         return null;
     }
 
+    public ProductHeader getProductHeaderById(Long id) {
+        System.out.println("get header called");
+        for(Product c: products) {
+            if(c.getHeader().getId() == id) {
+                return c.getHeader();
+            }
+        }
+        System.out.println("can not get: product not found with id: " + id);
+        return null;
+    }
+
 //    public AcknowledgementCode deleteProductById(Long id) {
 //        System.out.println("delete called");
 //        for(Product c: products) {
